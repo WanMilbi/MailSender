@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32901.215
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailSender", "MailSender\MailSender.csproj", "{4EFEA1E8-94DB-43CA-9358-3DA769A2724D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{2125A30A-FD19-4B34-88FA-C5E8A6CDC0FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleTests", "Tests\ConsoleTests\ConsoleTests.csproj", "{BEA4D0AF-2FAB-4917-90CF-1227CE9FB33D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4EFEA1E8-94DB-43CA-9358-3DA769A2724D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EFEA1E8-94DB-43CA-9358-3DA769A2724D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EFEA1E8-94DB-43CA-9358-3DA769A2724D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EFEA1E8-94DB-43CA-9358-3DA769A2724D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEA4D0AF-2FAB-4917-90CF-1227CE9FB33D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEA4D0AF-2FAB-4917-90CF-1227CE9FB33D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEA4D0AF-2FAB-4917-90CF-1227CE9FB33D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEA4D0AF-2FAB-4917-90CF-1227CE9FB33D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BEA4D0AF-2FAB-4917-90CF-1227CE9FB33D} = {2125A30A-FD19-4B34-88FA-C5E8A6CDC0FC}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8C38524D-0719-494C-B066-DDF30A081F52}
+	EndGlobalSection
+EndGlobal
