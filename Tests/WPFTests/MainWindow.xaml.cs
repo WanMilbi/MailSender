@@ -62,7 +62,16 @@ namespace WPFTests
                 SecurePassword = PasswordEdit.SecurePassword
             };
 
-            client.Send(messege);
+
+            try
+            {
+                client.Send(messege);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Невозможно отправить письмо " + ex.ToString());
+            }
+            
         }
     }
 }
