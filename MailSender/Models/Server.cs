@@ -1,11 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace MailSender.Models
 {
     internal class Server
     {
         public string Address { get; set; }
-        private int _Port;
+        private int _Port=25;
         public int Port
         {
             get => _Port;
@@ -20,5 +22,8 @@ namespace MailSender.Models
         public string Login { get; set; }
         public string Password { get; set; }
         public string Description { get; set; }
+
+        //public override string ToString() => $"{Address}:{Port}";
+        
     }
 }
