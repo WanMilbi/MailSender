@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
-using System.DirectoryServices;
+using MailSender.lib.Service;
 using MailSender.Models;
 
 namespace MailSender.Data
@@ -24,7 +24,7 @@ public static List<Server> Servers { get; } = Enumerable.Range(1, 10)
     {
         Address = $"smtp.server{i}.ru",
         Login = $"Login-{i}",
-        Password = $"Password-{i}",
+        Password = TextEncoder.Encode($"Password-{i}"),
         UseSSl = i%2==0
 
     }).ToList();

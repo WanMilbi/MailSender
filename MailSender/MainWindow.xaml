@@ -69,6 +69,7 @@
                         <ToolBar Header="Отправители">
                             <ToolBar.Band>1</ToolBar.Band>
                             <ComboBox
+                                Name ="SendersList"
                                 MinWidth="120"
                                 MaxWidth="200"
                                 ItemsSource="{x:Static data1:TestData.Senders}"
@@ -117,6 +118,7 @@
                     </ToolBarTray>
                     <GroupBox Header="Список получаетелей">
                         <DataGrid
+                            Name ="RecipientsList"
                             AlternatingRowBackground="LightBlue"
                             AutoGenerateColumns="False"
                             GridLinesVisibility="Vertical"
@@ -154,7 +156,7 @@
                                         <Setter Property="Background" Value="White" />
                                     </Style>
                                 </StackPanel.Resources>
-                                <Button Content="Отправить" />
+                                <Button Content="Отправить" Click="OnSendButtonClick"/>
                                 <Button Content="Запланировать" />
                             </StackPanel>
 

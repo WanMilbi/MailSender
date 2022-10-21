@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using MailSender.lib;
+
 
 namespace MailSender.Models
 {
-    internal class Server
+     class Server
     {
         public string Address { get; set; }
         private int _Port=25;
@@ -18,12 +20,12 @@ namespace MailSender.Models
                 _Port = value;
             }
         }
-        public bool UseSSl { get; set; }
+        public bool UseSSL { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
         public string Description { get; set; }
 
-        //public override string ToString() => $"{Address}:{Port}";
-        
+        public override string ToString() => $"{Address}:{Port}";
+
     }
 }
