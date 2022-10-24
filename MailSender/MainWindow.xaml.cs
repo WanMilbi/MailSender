@@ -1,6 +1,4 @@
-﻿using System;
-using System.IO;
-using System.Windows;
+﻿using System.Windows;
 using MailSender.lib;
 using MailSender.Models;
 using System.Net.Mail;
