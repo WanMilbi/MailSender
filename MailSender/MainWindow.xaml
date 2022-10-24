@@ -42,7 +42,10 @@
             </StatusBarItem>
             <Separator HorizontalAlignment="Left" />
         </StatusBar>
-        <TabControl>
+
+        <TabControl Name="myTab">
+
+
             <TabItem Header="Списки">
                 <DockPanel>
                     <ToolBarTray DockPanel.Dock="Top">
@@ -69,7 +72,7 @@
                         <ToolBar Header="Отправители">
                             <ToolBar.Band>1</ToolBar.Band>
                             <ComboBox
-                                Name ="SendersList"
+                                Name="SendersList"
                                 MinWidth="120"
                                 MaxWidth="200"
                                 ItemsSource="{x:Static data1:TestData.Senders}"
@@ -99,7 +102,14 @@
                                 ToolTip="Удалить" />
                         </ToolBar>
                         <ToolBar Band="0" Header="Перейти в планировщик">
+
+                            <Button
+                                fa:Awesome.Content="Solid_Clock"
+                                Click="ScheduleClick"
+                                ToolTip="Перейти" />
+
                             <Button fa:Awesome.Content="Solid_Clock" ToolTip="Перейти" />
+
                         </ToolBar>
                         <ToolBar Band="1" Header="Получатели">
                             <Button
@@ -118,7 +128,7 @@
                     </ToolBarTray>
                     <GroupBox Header="Список получаетелей">
                         <DataGrid
-                            Name ="RecipientsList"
+                            Name="RecipientsList"
                             AlternatingRowBackground="LightBlue"
                             AutoGenerateColumns="False"
                             GridLinesVisibility="Vertical"
@@ -139,7 +149,8 @@
                     </GroupBox>
                 </DockPanel>
             </TabItem>
-            <TabItem Header="Планировщик">
+
+            <TabItem Header="Планировщик" TabIndex="1">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -156,7 +167,11 @@
                                         <Setter Property="Background" Value="White" />
                                     </Style>
                                 </StackPanel.Resources>
-                                <Button Content="Отправить" Click="OnSendButtonClick"/>
+
+                                <Button Click="OnSendButtonClick" Content="Отправить" />
+
+                                <Button Content="Отправить" />
+
                                 <Button Content="Запланировать" />
                             </StackPanel>
 
@@ -213,7 +228,7 @@
                         ShowsPreview="True" />
                 </Grid>
             </TabItem>
-            <TabItem Header="Письма">
+            <TabItem Header="Письма" TabIndex="2">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition

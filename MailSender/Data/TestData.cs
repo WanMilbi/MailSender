@@ -25,7 +25,7 @@ public static List<Server> Servers { get; } = Enumerable.Range(1, 10)
         Address = $"smtp.server{i}.ru",
         Login = $"Login-{i}",
         Password = TextEncoder.Encode($"Password-{i}"),
-        UseSSl = i%2==0
+        UseSSL = i%2==0
 
     }).ToList();
 public static List<Message> Messeges { get; } = Enumerable.Range(1,20).Select(i=>new Message
