@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using MailSender.lib;
 
 
 namespace MailSender.Models
@@ -9,7 +6,7 @@ namespace MailSender.Models
      class Server
     {
         public string Address { get; set; }
-        private int _Port=25;
+        private int _Port = 25;
         public int Port
         {
             get => _Port;
