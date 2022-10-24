@@ -5,46 +5,66 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:WPFTests"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="MainWindow"
+    xmlns:vm="clr-namespace:WPFTests.ViewModels"
+    Title="{Binding Title}"
+Topmost="{Binding IsChecked,ElementName=IsWindowsTopMost}"
     Width="800"
     Height="450"
     mc:Ignorable="d">
+    <Window.DataContext>
+        <vm:MainWindowViewModel />
+    </Window.DataContext>
     <Grid>
         <TextBox
             Width="140"
             Margin="57,91,0,0"
             HorizontalAlignment="Left"
-            VerticalAlignment="Top" Text="{Binding Angle, ElementName=Rotator}"/>
+            VerticalAlignment="Top"
+            Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" />
         <Slider
             Width="140"
             Margin="400,91,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Maximum="600"  
-            Value ="{Binding X, ElementName=Translator}"/>
+            Maximum="600"
+            Value="{Binding X, ElementName=Translator}" />
         <Slider
             Width="140"
             Margin="232,91,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Maximum="180"
-            Minimum="-180" 
-            Value ="{Binding Angle, ElementName=Rotator}"/>
+            Minimum="-180"
+            Value="{Binding Angle, ElementName=Rotator}" />
         <Ellipse
             Width="90"
             Height="40"
             Margin="57,158,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
-            Fill="LightGoldenrodYellow" 
+            Fill="LightGoldenrodYellow"
             RenderTransformOrigin="0.5,0.5"
             Stroke="Aqua">
             <Ellipse.RenderTransform>
                 <TransformGroup>
-                    <TranslateTransform X="0" x:Name="Translator"/>
-                    <RotateTransform Angle="0" x:Name="Rotator"/>
+                    <TranslateTransform x:Name="Translator" X="0" />
+                    <RotateTransform x:Name="Rotator" Angle="0" />
                 </TransformGroup>
             </Ellipse.RenderTransform>
         </Ellipse>
+        <TextBlock Text="{Binding CurrentTime, ConverterCulture=ru-Ru, StringFormat=HH:mm:ss.fff}" />
+        <CheckBox
+            Margin="80,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="Включить таймер"
+            IsChecked="{Binding TimerEnabled}" />
+        <CheckBox
+            Name ="IsWindowsTopMost"
+            Margin="200,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="Top Most" />
+        <Button Content="Close Window" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="32,32,0,0"></Button>
     </Grid>
 </Window>
