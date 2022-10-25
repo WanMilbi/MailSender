@@ -11,7 +11,8 @@
     xmlns:m="[m ]clr-namespace:MailSender.Models"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="clr-namespace:MailSender.Models"
-    Title="MainWindow"
+    DataContext="{Binding MainWindowModel, Source={StaticResource Locator}}"
+    Title="{Binding Title}"
     Width="800"
     Height="450"
     mc:Ignorable="d">
@@ -57,7 +58,9 @@
                                 MaxWidth="200"
                                 Margin="26,0,0,0"
                                 DisplayMemberPath="Address"
-                                ItemsSource="{x:Static data1:TestData.Servers}"
+                                ItemsSource="{Binding Servers}"
+                                SelectedItem="{Binding SelectedServer}"
+
                                 SelectedIndex="0" />
                             <Button>
                                 <fa:ImageAwesome Height="12" Icon="Solid_PlusCircle" />
@@ -75,7 +78,8 @@
                                 Name="SendersList"
                                 MinWidth="120"
                                 MaxWidth="200"
-                                ItemsSource="{x:Static data1:TestData.Senders}"
+                                ItemsSource="{Binding Senders}"
+                                SelectedItem="{Binding SelectedSender}"
                                 SelectedIndex="0">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate DataType="{x:Type models:Sender}">
@@ -108,7 +112,6 @@
                                 Click="ScheduleClick"
                                 ToolTip="Перейти" />
 
-                            <Button fa:Awesome.Content="Solid_Clock" ToolTip="Перейти" />
 
                         </ToolBar>
                         <ToolBar Band="1" Header="Получатели">
@@ -128,11 +131,11 @@
                     </ToolBarTray>
                     <GroupBox Header="Список получаетелей">
                         <DataGrid
-                            Name="RecipientsList"
+                            Name="RecipientsList" ItemsSource="{Binding Recipients}"
+                            SelectedItem="{Binding SelectedRecipient}"
                             AlternatingRowBackground="LightBlue"
                             AutoGenerateColumns="False"
                             GridLinesVisibility="Vertical"
-                            ItemsSource="{x:Static data1:TestData.Recipients}"
                             VerticalGridLinesBrush="Gray">
                             <DataGrid.Columns>
                                 <DataGridTextColumn MinWidth="30" Header="ID" />
@@ -167,11 +170,7 @@
                                         <Setter Property="Background" Value="White" />
                                     </Style>
                                 </StackPanel.Resources>
-
-                                <Button Click="OnSendButtonClick" Content="Отправить" />
-
                                 <Button Content="Отправить" />
-
                                 <Button Content="Запланировать" />
                             </StackPanel>
 
@@ -234,6 +233,7 @@
                         <ColumnDefinition
                             Width="Auto"
                             MinWidth="200"
+
                             MaxWidth="400" />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
@@ -241,7 +241,8 @@
                         <ListBox
                             Name="MessagesList"
                             DisplayMemberPath="Subject"
-                            ItemsSource="{x:Static data1:TestData.Messeges}" />
+                            ItemsSource="{Binding Messages}" 
+                            SelectedItem="{Binding SelectedMessage}"/>
                     </GroupBox>
                     <GroupBox Grid.Column="1" Header="Редактор">
                         <DockPanel>
