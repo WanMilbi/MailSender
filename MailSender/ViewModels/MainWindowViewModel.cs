@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Input;
 using MailSender.Data;
 using MailSender.Infrastructure.Commands;
+using MailSender.lib.Interfaces;
 using MailSender.Models;
 using MailSender.ViewModels.Base;
 
@@ -12,6 +13,7 @@ namespace MailSender.ViewModels
 {
     internal class MainWindowViewModel : ViewModel
     {
+        private readonly IMailService _MailService;
         private string _Title = "Test window";
 
         public string Title
@@ -137,9 +139,40 @@ namespace MailSender.ViewModels
         }
         #endregion
 
-        #endregion
-        public MainWindowViewModel()
+
+        #region Command SendMailCommand - отправка почты
+
+        private ICommand _SendMailCommand;
+
+        public ICommand SendMailCommand => _SendMailCommand
+            ??= new LambdaCommand(OnSendMailCommandExecute, CanSendMailCommandExecute);
+
+        private bool CanSendMailCommandExecute(object p)
         {
+            if (SelectedServer is null) return false;
+            if(SelectedSender is null) return false;
+            if(SelectedRecipient is null) return false;
+            if(SelectedMessage is null) return false;
+            return false;
+        }
+
+        private void OnSendMailCommandExecute(object p)
+        {
+            var server = SelectedServer;
+            var sender = SelectedSender;
+            var recipient = SelectedRecipient;
+            var message = SelectedMessage;
+
+            var mail_sender = _MailService.GetSender(server.Address, server.Port, server.UseSSL, server.Login,
+                server.Password);
+            mail_sender.Send(sender.Address,recipient.Address,message.Subject,message.Body);
+        }
+        #endregion
+
+        #endregion
+        public MainWindowViewModel(IMailService MailService)
+        {
+            _MailService = MailService;
             Servers = new ObservableCollection<Server>(TestData.Servers);
             Senders = new ObservableCollection<Sender>(TestData.Senders);
             Recipients = new ObservableCollection<Recipient>(TestData.Recipients);
