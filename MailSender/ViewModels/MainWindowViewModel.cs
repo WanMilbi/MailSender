@@ -1,5 +1,10 @@
 ﻿using System.Collections.ObjectModel;
+using System.Linq;
+using System.Runtime.Serialization.Formatters;
+using System.Windows;
+using System.Windows.Input;
 using MailSender.Data;
+using MailSender.Infrastructure.Commands;
 using MailSender.Models;
 using MailSender.ViewModels.Base;
 
@@ -76,6 +81,63 @@ namespace MailSender.ViewModels
 
         }
 
+        #region Commands
+
+        #region CreateNewServerCommand
+
+        private ICommand _CreateNewServerCommand;
+
+        public ICommand CreateNewServerCommand => _CreateNewServerCommand
+            ??= new LambdaCommand(OnCreateNewServerCommandExecute, CanCreateNewServerCommandExecute);
+
+        private bool CanCreateNewServerCommandExecute(object p) => true;
+
+        private void OnCreateNewServerCommandExecute(object p)
+        {
+            //основное действия,выполняемое командой, описывается здесь!
+            MessageBox.Show("Создание нового сервера!", "Управление серверами!");
+        }
+        #endregion
+
+        #region EditServerCommand
+
+        private ICommand _EditServerCommand;
+
+        public ICommand EditServerCommand => _EditServerCommand
+            ??= new LambdaCommand(OnEditServerCommandExecute, CanEditServerCommandExecute);
+
+        private bool CanEditServerCommandExecute(object p) => p is Server || SelectedServer != null;
+
+        private void OnEditServerCommandExecute(object p)
+        {
+            var server = p as Server ?? SelectedServer;
+            if(server is null) return;
+            MessageBox.Show($"Редактирование сервера {server.Address}!", "Управление серверами!");
+        }
+        #endregion
+
+
+        #region DeleteServerCommand
+
+        private ICommand _DeleteServerCommand;
+
+        public ICommand DeleteServerCommand => _DeleteServerCommand
+            ??= new LambdaCommand(OnDeleteServerCommandExecute, CanDeleteServerCommandExecute);
+
+        private bool CanDeleteServerCommandExecute(object p) => p is Server || SelectedServer != null;
+
+        private void OnDeleteServerCommandExecute(object p)
+        {
+            var server = p as Server ?? SelectedServer;
+            if (server  is null) return;
+            Servers.Remove(server);
+            SelectedServer = Servers.FirstOrDefault();
+            MessageBox.Show($"Удаление сервера{server.Address}!", "Управление серверами!");
+
+        }
+        #endregion
+
+        #endregion
         public MainWindowViewModel()
         {
             Servers = new ObservableCollection<Server>(TestData.Servers);
