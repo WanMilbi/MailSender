@@ -62,15 +62,24 @@
                                 SelectedItem="{Binding SelectedServer}"
 
                                 SelectedIndex="0" />
-                            <Button>
-                                <fa:ImageAwesome Height="12" Icon="Solid_PlusCircle" />
-                            </Button>
-                            <Button>
-                                <Image Height="12" Source="Media/edit.png" />
-                            </Button>
-                            <Button>
-                                <Image Height="12" Source="Media/remove.png" />
-                            </Button>
+                            <Button
+                                fa:Awesome.Content="Solid_PlusCircle"
+                                Foreground="OrangeRed"
+                                ToolTip="Добавить"
+                                Command="{Binding CreateNewServerCommand}"
+                                />
+                            <Button
+                                fa:Awesome.Content="Solid_Edit"
+                                Foreground="Blue"
+                                ToolTip="Редактировать"
+                                Command="{Binding EditServerCommand}"
+                                CommandParameter="{Binding SelectedServer}"/>
+                            <Button
+                                fa:Awesome.Content="Regular_TrashAlt"
+                                Foreground="Black"
+                                ToolTip="Удалить" 
+                                Command="{Binding DeleteServerCommand}"
+                                CommandParameter="{Binding SelectedServer}"/>
                         </ToolBar>
                         <ToolBar Header="Отправители">
                             <ToolBar.Band>1</ToolBar.Band>
@@ -233,7 +242,6 @@
                         <ColumnDefinition
                             Width="Auto"
                             MinWidth="200"
-
                             MaxWidth="400" />
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
