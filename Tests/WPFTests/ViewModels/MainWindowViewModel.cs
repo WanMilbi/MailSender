@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Timers;
+using System.Windows;
+using System.Windows.Input;
+using WPFTests.Infrastructure.Commands;
 using WPFTests.ViewModels.Base;
 
 
@@ -37,6 +40,13 @@ namespace WPFTests.ViewModels
         }
 
         private readonly Timer _Timer;
+        private ICommand _ShowDialogCommand;
+        public ICommand ShowDialogCommand => _ShowDialogCommand ??= new LambdaCommand(OnShowDialogCommandExecuted);
+
+        private void OnShowDialogCommandExecuted(object p)
+        {
+            MessageBox.Show("Hello World!");
+        }
 
         public MainWindowViewModel()
         {

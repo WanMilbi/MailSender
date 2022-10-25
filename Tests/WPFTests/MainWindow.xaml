@@ -2,14 +2,14 @@
     x:Class="WPFTests.MainWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:commands="clr-namespace:WPFTests.Infrastructure.Commands"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:WPFTests"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:WPFTests.ViewModels"
     Title="{Binding Title}"
-Topmost="{Binding IsChecked,ElementName=IsWindowsTopMost}"
     Width="800"
     Height="450"
+    Topmost="{Binding IsChecked, ElementName=IsWindowsTopMost}"
     mc:Ignorable="d">
     <Window.DataContext>
         <vm:MainWindowViewModel />
@@ -52,19 +52,33 @@ Topmost="{Binding IsChecked,ElementName=IsWindowsTopMost}"
                 </TransformGroup>
             </Ellipse.RenderTransform>
         </Ellipse>
-        <TextBlock Text="{Binding CurrentTime, ConverterCulture=ru-Ru, StringFormat=HH:mm:ss.fff}" />
+        <TextBlock  Text="{Binding CurrentTime, ConverterCulture=ru-Ru, StringFormat=HH:mm:ss.fff}" Margin="25,0,673,391" />
         <CheckBox
-            Margin="80,0"
+            Margin="127,2,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Включить таймер"
             IsChecked="{Binding TimerEnabled}" />
         <CheckBox
-            Name ="IsWindowsTopMost"
-            Margin="200,0"
+            Name="IsWindowsTopMost"
+            Margin="249,2,0,0"
             HorizontalAlignment="Left"
             VerticalAlignment="Top"
             Content="Top Most" />
-        <Button Content="Close Window" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="32,32,0,0"></Button>
+        <Button
+            Margin="460,33,0,0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Content="Close Window">
+            <Button.Command>
+                <commands:CloseWindowCommand />
+            </Button.Command>
+        </Button>
+        <Button
+            Margin="0,33,0,0"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Top"
+            Content="Hello World!" Command="{Binding ShowDialogCommand}">
+        </Button>
     </Grid>
 </Window>

@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
 using System.Windows.Input;
 
-namespace WPFTests.Infastructure.Commands.Base
+namespace MailSender.Infrastructure.Commands.Base
 {
     abstract class Command:ICommand
     {
