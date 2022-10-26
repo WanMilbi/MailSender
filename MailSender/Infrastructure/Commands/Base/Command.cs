@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 namespace MailSender.Infrastructure.Commands.Base
 {
-    abstract class Command:ICommand
+     abstract class Command:ICommand
     {
         public event EventHandler CanExecuteChanged
         {

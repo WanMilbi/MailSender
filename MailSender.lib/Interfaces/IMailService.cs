@@ -6,7 +6,7 @@ namespace MailSender.lib.Interfaces
 {
     public interface IMailService
     {
-        IMailSender GetSender (string Servr,int Port, bool SSL, string Login, string Password);
+        IMailSender GetSender (string Server,int Port, bool SSL, string Login, string Password);
     }
 
     public interface IMailSender

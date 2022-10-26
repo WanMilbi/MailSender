@@ -15,18 +15,22 @@ namespace MailSender.ViewModels
     {
         private readonly IMailService _MailService;
         private string _Title = "Test window";
+        private ObservableCollection<Server> _Servers;
+        private ObservableCollection<Sender> _Senders;
+        private ObservableCollection<Recipient> _Recipients;
+        private ObservableCollection<Message> _Messages;
+        private Server _SelectedServer;
+        private Sender _SelectedSender;
+        private Recipient _SelectedRecipient;
+        private Message _SelectedMessage;
+        public StatisticViewModel Statistic { get; } = new StatisticViewModel();
 
+        #region Property
         public string Title
         {
             get => _Title;
             set => Set(ref _Title, value);
         }
-
-        private ObservableCollection<Server> _Servers;
-        private ObservableCollection<Sender> _Senders;
-        private ObservableCollection<Recipient> _Recipients;
-        private ObservableCollection<Message> _Messages;
-
         public ObservableCollection<Server> Servers
         {
             get => _Servers;
@@ -50,15 +54,11 @@ namespace MailSender.ViewModels
             set => Set(ref _Messages, value);
         }
 
-        private Server _SelectedServer;
-
         public Server SelectedServer
         {
             get => _SelectedServer;
             set => Set(ref _SelectedServer, value);
         }
-
-        private Sender _SelectedSender;
 
         public Sender SelectedSender
         {
@@ -66,15 +66,13 @@ namespace MailSender.ViewModels
             set => Set(ref _SelectedSender, value);
 
         }
-        private Recipient _SelectedRecipient;
-
+        
         public Recipient SelectedRecipient
         {
             get => _SelectedRecipient;
             set => Set(ref _SelectedRecipient, value);
 
         }
-        private Message _SelectedMessage;
 
         public Message SelectedMessage
         {
@@ -82,6 +80,8 @@ namespace MailSender.ViewModels
             set => Set(ref _SelectedMessage, value);
 
         }
+
+        #endregion
 
         #region Commands
 
@@ -118,7 +118,6 @@ namespace MailSender.ViewModels
         }
         #endregion
 
-
         #region DeleteServerCommand
 
         private ICommand _DeleteServerCommand;
@@ -139,8 +138,7 @@ namespace MailSender.ViewModels
         }
         #endregion
 
-
-        #region Command SendMailCommand - отправка почты
+        #region SendMailCommand
 
         private ICommand _SendMailCommand;
 
@@ -149,11 +147,11 @@ namespace MailSender.ViewModels
 
         private bool CanSendMailCommandExecute(object p)
         {
-            if (SelectedServer is null) return false;
+            if(SelectedServer is null) return false;
             if(SelectedSender is null) return false;
             if(SelectedRecipient is null) return false;
             if(SelectedMessage is null) return false;
-            return false;
+            return true;
         }
 
         private void OnSendMailCommandExecute(object p)
@@ -163,9 +161,9 @@ namespace MailSender.ViewModels
             var recipient = SelectedRecipient;
             var message = SelectedMessage;
 
-            var mail_sender = _MailService.GetSender(server.Address, server.Port, server.UseSSL, server.Login,
-                server.Password);
+            var mail_sender = _MailService.GetSender(server.Address, server.Port, server.UseSSL, server.Login, server.Password);
             mail_sender.Send(sender.Address,recipient.Address,message.Subject,message.Body);
+            Statistic.MessageSended();
         }
         #endregion
 
