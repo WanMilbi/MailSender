@@ -1,8 +1,8 @@
 ﻿using MailSender.Infrastructure.Commands;
-using MailSender.Models;
 using System.Linq;
 using System.Windows.Input;
 using System.Windows;
+using MailSender.lib.Models;
 
 namespace MailSender.ViewModels
 {

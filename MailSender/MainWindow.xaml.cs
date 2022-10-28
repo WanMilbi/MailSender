@@ -1,6 +1,5 @@
 ﻿using System.Windows;
 using MailSender.lib;
-using MailSender.Models;
 using System.Net.Mail;
 
 namespace MailSender

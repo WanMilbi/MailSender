@@ -6,6 +6,6 @@
     xmlns:vm="clr-namespace:MailSender.ViewModels"
     StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <vm:ViewModelLocator x:Key="Locator"></vm:ViewModelLocator>
+        <vm:ViewModelLocator x:Key="Locator" />
     </Application.Resources>
 </Application>
