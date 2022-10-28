@@ -2,7 +2,7 @@
 
 namespace MailSender.lib.Models
 {
-    public class Server
+    public class Server : Entity
     {
         public string Address { get; set; }
         private int _Port = 25;

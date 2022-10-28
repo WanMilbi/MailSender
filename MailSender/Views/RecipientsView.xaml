@@ -7,31 +7,41 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DesignHeight="450"
     d:DesignWidth="800"
+    DataContext="{Binding MainWindowModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
     <DockPanel Margin="10">
         <TextBlock
             HorizontalAlignment="Center"
             DockPanel.Dock="Top"
-            FontWeight="Bold"
             FontSize="20"
+            FontWeight="Bold"
             Text="Получатели" />
-        <DockPanel DockPanel.Dock="Top" Margin="0,5">
-            <TextBlock Text="Фильтр:" Margin="0,0,5,0" />
+        <DockPanel Margin="0,5" DockPanel.Dock="Top">
+            <TextBlock Margin="0,0,5,0" Text="Фильтр:" />
             <TextBox />
         </DockPanel>
-        <UniformGrid DockPanel.Dock="Bottom" HorizontalAlignment="Center" Rows="1">
-            <Button Content="Загрузка данных" Margin="5,0" Padding="15,5"></Button>
-            <Button Content="Сохранение данных" Margin="5,0" Padding="15,5"></Button>
+        <UniformGrid
+            HorizontalAlignment="Center"
+            DockPanel.Dock="Bottom"
+            Rows="1">
+            <Button
+                Margin="5,0"
+                Padding="15,5"
+                Content="Загрузка данных" />
+            <Button
+                Margin="5,0"
+                Padding="15,5"
+                Content="Сохранение данных" />
         </UniformGrid>
         <DataGrid
             Name="RecipientsList"
             AlternatingRowBackground="LightBlue"
             AutoGenerateColumns="False"
             GridLinesVisibility="Vertical"
+            IsReadOnly="True"
             ItemsSource="{Binding Recipients}"
             SelectedItem="{Binding SelectedRecipient}"
-            VerticalGridLinesBrush="Gray"
-            IsReadOnly="True">
+            VerticalGridLinesBrush="Gray">
             <DataGrid.Columns>
                 <DataGridTextColumn MinWidth="30" Header="ID" />
                 <DataGridTextColumn

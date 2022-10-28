@@ -218,7 +218,15 @@
                         ShowsPreview="True" />
                 </Grid>
             </TabItem>
-            <TabItem Header="Письма" TabIndex="2">
+            <TabItem Header="Письма" TabIndex="2" RenderTransformOrigin="0.5,0.5">
+                <TabItem.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-0.02"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </TabItem.RenderTransform>
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition
