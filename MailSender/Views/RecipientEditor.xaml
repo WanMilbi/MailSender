@@ -5,6 +5,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:MailSender.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:validation="clr-namespace:MailSender.Infrastructure.ValidationRules"
     d:DesignHeight="230"
     d:DesignWidth="450"
     DataContext="{Binding MainWindowModel, Source={StaticResource Locator}}"
@@ -48,11 +49,20 @@
         <TextBox
             Grid.Row="1"
             Grid.Column="1"
-            Text="{Binding SelectedRecipient.Name, NotifyOnValidationError=True, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True }" />
-        <TextBox
-            Grid.Row="2"
-            Grid.Column="1"
-            Text="{Binding SelectedRecipient.Address}" />
+            Text="{Binding SelectedRecipient.Name, NotifyOnValidationError=True, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True}" />
+        <TextBox Grid.Row="2" Grid.Column="1">
+            <TextBox.Text>
+                <Binding Path="SelectedRecipient.Address" NotifyOnValidationError="True" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <validation:RegExValidation Pattern="(\w+\.)*\w+@(\w+\.)+[A-Za-z]+" ErrorMessage="Строка адреса имела неверный формат"/>
+                        <DataErrorValidationRule />
+                        <ExceptionValidationRule />
+                        <NotifyDataErrorValidationRule />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
+
         <UniformGrid
             Grid.Row="3"
             Grid.Column="0"
