@@ -9,7 +9,7 @@
     d:DesignWidth="450"
     DataContext="{Binding MainWindowModel, Source={StaticResource Locator}}"
     mc:Ignorable="d">
-    <Grid Margin="15">
+    <Grid Margin="15" Validation.Error="OnDataValidationError">
         <Grid.Resources>
             <Style TargetType="TextBlock">
                 <Setter Property="HorizontalAlignment" Value="Right" />
@@ -44,12 +44,11 @@
         <TextBox
             Grid.Row="0"
             Grid.Column="1"
-            Text="{Binding SelectedRecipient.Id, NotifyOnValidationError=True}"
-            Validation.Error="OnDataValidationError" />
+            Text="{Binding SelectedRecipient.Id, NotifyOnValidationError=True}" />
         <TextBox
             Grid.Row="1"
             Grid.Column="1"
-            Text="{Binding SelectedRecipient.Name, NotifyOnValidationError=True, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=False}" />
+            Text="{Binding SelectedRecipient.Name, NotifyOnValidationError=True, ValidatesOnDataErrors=True, ValidatesOnNotifyDataErrors=True, ValidatesOnExceptions=True }" />
         <TextBox
             Grid.Row="2"
             Grid.Column="1"
