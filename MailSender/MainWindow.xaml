@@ -10,8 +10,8 @@
     xmlns:local="clr-namespace:MailSender"
     xmlns:m="[m ]clr-namespace:MailSender.Models"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:v="clr-namespace:MailSender.Views"
     xmlns:models="clr-namespace:MailSender.lib.Models;assembly=MailSender.lib"
+    xmlns:v="clr-namespace:MailSender.Views"
     Title="{Binding Title}"
     Width="800"
     Height="450"
@@ -116,10 +116,7 @@
                         </ToolBar>
                         <ToolBar Band="0" Header="Перейти в планировщик">
 
-                            <Button
-                                fa:Awesome.Content="Solid_Clock"
-                                
-                                ToolTip="Перейти" />
+                            <Button fa:Awesome.Content="Solid_Clock" ToolTip="Перейти" />
 
 
                         </ToolBar>
@@ -139,7 +136,12 @@
                         </ToolBar>
                     </ToolBarTray>
                     <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5*" />
+                            <ColumnDefinition Width="2*" />
+                        </Grid.ColumnDefinitions>
                         <v:RecipientsView />
+                        <v:RecipientEditor Grid.Column="1" />
                     </Grid>
                 </DockPanel>
             </TabItem>
@@ -218,13 +220,16 @@
                         ShowsPreview="True" />
                 </Grid>
             </TabItem>
-            <TabItem Header="Письма" TabIndex="2" RenderTransformOrigin="0.5,0.5">
+            <TabItem
+                Header="Письма"
+                RenderTransformOrigin="0.5,0.5"
+                TabIndex="2">
                 <TabItem.RenderTransform>
                     <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="-0.02"/>
-                        <TranslateTransform/>
+                        <ScaleTransform />
+                        <SkewTransform />
+                        <RotateTransform Angle="-0.02" />
+                        <TranslateTransform />
                     </TransformGroup>
                 </TabItem.RenderTransform>
                 <Grid>
