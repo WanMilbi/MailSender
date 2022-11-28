@@ -46,8 +46,8 @@ namespace ThreadApp
                 MyArray[i - 1] = i;
             }
             //параметры потоков
-            Thread thrd_1 = new Thread(new ThreadStart(Thread1));
-            Thread thrd_2 = new Thread(new ThreadStart(Thread2));
+            var thrd_1 = new Thread(Thread1);
+            var thrd_2 = new Thread(Thread2);
             thrd_1.Start();
             thrd_2.Start();
             //Ждём вычисления                         

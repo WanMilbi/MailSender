@@ -8,81 +8,33 @@
     xmlns:vm="clr-namespace:WPFTests.ViewModels"
     Title="{Binding Title}"
     Width="800"
-    Height="450"
-    Topmost="{Binding IsChecked, ElementName=IsWindowsTopMost}"
-    mc:Ignorable="d">
-    <Window.DataContext>
-        <vm:MainWindowViewModel />
-    </Window.DataContext>
-    <Grid>
-        <TextBox
-            Width="140"
-            Margin="57,91,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" />
-        <Slider
-            Width="140"
-            Margin="400,91,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Maximum="600"
-            Value="{Binding X, ElementName=Translator}" />
-        <Slider
-            Width="140"
-            Margin="232,91,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Maximum="180"
-            Minimum="-180"
-            Value="{Binding Angle, ElementName=Rotator}" />
-        <Ellipse
-            Width="90"
-            Height="40"
-            Margin="57,158,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Fill="LightGoldenrodYellow"
-            RenderTransformOrigin="0.5,0.5"
-            Stroke="Aqua">
-            <Ellipse.RenderTransform>
-                <TransformGroup>
-                    <TranslateTransform x:Name="Translator" X="0" />
-                    <RotateTransform x:Name="Rotator" Angle="0" />
-                </TransformGroup>
-            </Ellipse.RenderTransform>
-        </Ellipse>
-        <TextBlock  Text="{Binding CurrentTime, ConverterCulture=ru-Ru, StringFormat=HH:mm:ss.fff}" Margin="20,-3,678,394" />
-        <CheckBox
-            Margin="127,2,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Content="Включить таймер"
-            IsChecked="{Binding TimerEnabled}" />
-        <CheckBox
-            Name="IsWindowsTopMost"
-            Margin="249,2,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Content="Top Most" />
-        <Button
-            Margin="460,33,0,0"
-            HorizontalAlignment="Left"
-            VerticalAlignment="Top"
-            Content="Close Window">
-            <Button.Command>
-                <commands:CloseWindowCommand />
-            </Button.Command>
-        </Button>
-        <Button
-            Margin="0,33,0,0"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Top"
-            Content="Hello World!" Command="{Binding ShowDialogCommand}">
-        </Button>
-        <Button Content="Compute button" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="578,33,0,0" Click="ComputeResultButton_Click">
-            
-        </Button>
-        <TextBlock  Name ="ResultText" Text="Result" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="578,58,0,0"/>
-    </Grid>
+    Height="450">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem
+                Name="StartAction"
+                Click="OnOpenFileClick"
+                Header="Открыть файл" />
+            <MenuItem
+                Name="CancelAction" IsEnabled="False"
+                Click="OnCancelReadingClick"
+                Header="Отменить" />
+        </Menu>
+        <ProgressBar
+            Name="ProgressInfo"
+            Height="20"
+            DockPanel.Dock="Bottom"
+            Maximum="1"
+            Minimum="0" />
+
+        <Grid>
+            <TextBlock
+                Name="Result"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontSize="20"
+                FontWeight="Bold"
+                Text="Результат" />
+        </Grid>
+    </DockPanel>
 </Window>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace ConsoleTests
 {
@@ -6,9 +7,13 @@ namespace ConsoleTests
     {
         static void Main(string[] args)
         {
-            //ThreadTests.Start();
-            //CriticalSectionTests.Start();
-            ThreadPoolTests.Start();
+            var task = AsyncAwaitTest.StartAsync();
+            var process_messages = AsyncAwaitTest.ProcessDataTestAsync(); 
+
+Console.WriteLine("Тестовая задача запущена и мы ее ждем!");
+
+Task.WaitAll(task,process_messages);
+
             Console.WriteLine("Главный поток работу закончил");
             Console.ReadLine();
         }
