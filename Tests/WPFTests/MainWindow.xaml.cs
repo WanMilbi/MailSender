@@ -45,6 +45,8 @@ namespace WPFTests
         //}
         private async void OnOpenFileClick(object Sender, RoutedEventArgs E)
         {
+            //Мы находились в ThreadId == 1
+            await Task.Yield();
             var dialog = new OpenFileDialog
             {
                 Title = "Выбор файла для чтения",
@@ -108,6 +110,8 @@ IProgress<double> progress = new Progress<double>(p => ProgressInfo.Value = p);
 
         private static async Task<int> GetWordsCountAsync(string FileName, IProgress<double> Progress = null, CancellationToken Cancel = default)
         {
+            await Task.Yield().ConfigureAwait(false);
+
             var dict = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
 Cancel.ThrowIfCancellationRequested();
             using (var reader = new StreamReader(FileName))
@@ -117,7 +121,7 @@ Cancel.ThrowIfCancellationRequested();
                     Cancel.ThrowIfCancellationRequested();
                     var line = await reader.ReadLineAsync().ConfigureAwait(false);
                     var words = line.Split(' ');
-                    //await Task.Delay(5000);
+                    await Task.Delay(1).ConfigureAwait(false);
 
                     foreach (var word in words)
                     {
