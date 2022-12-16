@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ConsoleTests.Data
 {
-    internal class StudentsDB:DbContext
+    public class StudentsDB:DbContext
     {
         public DbSet<Student> Students { get; set; }
 

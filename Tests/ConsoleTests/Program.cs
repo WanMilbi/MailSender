@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Threading.Tasks;
 using ConsoleTests.Data;
 using ConsoleTests.Data.Entityes;
@@ -26,7 +28,9 @@ namespace ConsoleTests
 
             using (var db = new StudentsDB(new DbContextOptionsBuilder<StudentsDB>().UseSqlServer(connection_str).Options))
             {
-                await db.Database.EnsureCreatedAsync();
+                //await db.Database.EnsureCreatedAsync();
+
+                await db.Database.MigrateAsync();
 var students_count = await db.Students.CountAsync();
 
 Console.WriteLine($"Число студентов в БД = {students_count}");
@@ -66,6 +70,23 @@ Console.WriteLine($"Число студентов в БД = {students_count}");
 
             await db.SaveChangesAsync();
             }
+
+            using (var db = new StudentsDB(new DbContextOptionsBuilder<StudentsDB>().UseSqlServer(connection_str)
+                       .Options))
+            {
+                var students = await db.Students
+                    .Include(s=>s.Group)
+                    .Where(s => s.Group.Name == "Группа 5")
+                    .ToArrayAsync();
+
+                foreach (var student in students)
+                {
+                    Console.WriteLine($"{student.Id} {student.Name} - {student.Group.Name}");
+
+                    
+                }
+            }
         }
+
     }
 }
