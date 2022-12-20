@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlTypes;
-using System.Text;
+﻿using System.Collections.Generic;
 using MailSender.lib.Models;
 
 namespace MailSender.lib.Interfaces

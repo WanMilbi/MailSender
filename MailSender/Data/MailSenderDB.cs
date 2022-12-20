@@ -1,5 +1,4 @@
-﻿using MailSender.Data.Migrations;
-using MailSender.lib.Models;
+﻿using MailSender.lib.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace MailSender.Data
