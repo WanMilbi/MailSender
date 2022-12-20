@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Configuration.Internal;
 using System.Linq;
 using System.Runtime.Serialization.Formatters;
 using System.Windows;
@@ -8,12 +9,14 @@ using MailSender.Infrastructure.Commands;
 using MailSender.lib.Interfaces;
 using MailSender.lib.Models;
 using MailSender.ViewModels.Base;
+using Microsoft.Extensions.Configuration;
 
 namespace MailSender.ViewModels
 {
 partial class MainWindowViewModel : ViewModel
     {
         private readonly IMailService _MailService;
+        private readonly IStore<Recipient> _RecipientStore;
         private string _Title = "Test window";
         private ObservableCollection<Server> _Servers;
         private ObservableCollection<Sender> _Senders;
@@ -84,13 +87,16 @@ partial class MainWindowViewModel : ViewModel
         #endregion
 
         
-        public MainWindowViewModel(IMailService MailService)
+        public MainWindowViewModel(IMailService MailService,MailSenderDB db,IStore<Recipient> RecipientStore )
         {
             _MailService = MailService;
+            _RecipientStore = RecipientStore;
             Servers = new ObservableCollection<Server>(TestData.Servers);
             Senders = new ObservableCollection<Sender>(TestData.Senders);
-            Recipients = new ObservableCollection<Recipient>(TestData.Recipients);
-Messages = new ObservableCollection<Message>(TestData.Messeges);
+            Recipients = new ObservableCollection<Recipient>(RecipientStore.GetAll());
+Messages = new ObservableCollection<Message>(TestData.Messages);
+
+
         }
     }
 }

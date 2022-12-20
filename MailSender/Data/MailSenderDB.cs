@@ -1,4 +1,5 @@
-﻿using MailSender.lib.Models;
+﻿using MailSender.Data.Migrations;
+using MailSender.lib.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace MailSender.Data
@@ -9,7 +10,16 @@ namespace MailSender.Data
         public DbSet<Sender> Senders { get; set; }
         public DbSet<Server> Servers { get; set; }
         public DbSet<Message> Messages { get; set; }    
-        public  DbSet<ShedulerTask> ShedulerTasks { get; set; }
+        public  DbSet<SchedulerTask> SchedulerTasks { get; set; }
         public MailSenderDB(DbContextOptions<MailSenderDB> opt):base(opt) { }
+
+        //Каскадное удаление
+        //protected override void OnModelCreating(ModelBuilder db)
+        //{
+        //    db.Entity<ShedulerTask>()
+        //        .HasMany(t => t.Recipients)
+        //        .WithOne("Task")
+        //        .OnDelete(DeleteBehavior.Cascade);
+        //}
     }
 }

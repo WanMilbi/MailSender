@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MailSender.lib.Models
 {
-    public class ShedulerTask:Entity
+    public class SchedulerTask:Entity
     {
         public DateTime Time { get; set; }
         public Server Server { get; set; }

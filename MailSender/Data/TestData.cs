@@ -28,7 +28,7 @@ public static List<Server> Servers { get; } = Enumerable.Range(1, 10)
         UseSSL = i%2==0
 
     }).ToList();
-public static List<Message> Messeges { get; } = Enumerable.Range(1,20).Select(i=>new Message
+public static List<Message> Messages { get; } = Enumerable.Range(1,20).Select(i=>new Message
 {
 Subject = $"Сообщение {i}",
 Body = $"Текст сообщения{i}"
