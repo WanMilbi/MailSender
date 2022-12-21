@@ -56,6 +56,9 @@ namespace MailSender
             services.AddSingleton<IStore<Message>, MessagesStoreInDB>();
             services.AddSingleton<IStore<SchedulerTask>, SchedulerTasksStoreInDB>();
 
+            services.AddSingleton<IMailSchedulerService, TaskMailSchedulerService>();
+            
+
         }
 
 
