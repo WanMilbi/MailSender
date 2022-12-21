@@ -16,7 +16,12 @@ namespace MailSender.ViewModels
 partial class MainWindowViewModel : ViewModel
     {
         private readonly IMailService _MailService;
-        private readonly IStore<Recipient> _RecipientStore;
+        private readonly IStore<Recipient> _RecipientsStore;
+        private readonly IStore<Sender> _SendersStore;
+        private readonly IStore<Message> _MessagesStore;
+        private readonly IStore<Server> _ServersStore;
+        private readonly IStore<SchedulerTask> _SchedulerTasksStore;
+        private readonly IMailSchedulerService _MailSchedulerService;
         private string _Title = "Test window";
         private ObservableCollection<Server> _Servers;
         private ObservableCollection<Sender> _Senders;
@@ -84,18 +89,46 @@ partial class MainWindowViewModel : ViewModel
 
         }
 
+        private ICommand _LoadDataCommand;
+
+        public ICommand LoadDataCommand => _LoadDataCommand
+            ??= new LambdaCommand(OnLoadDataCommandExecuted, CanLoadDataCommandExecute);
+
+
+        private bool CanLoadDataCommandExecute(object p) => true;
+
+        private void OnLoadDataCommandExecuted(object p)
+        {
+            Servers = new ObservableCollection<Server>(_ServersStore.GetAll());
+            Senders = new ObservableCollection<Sender>(_SendersStore.GetAll());
+            Recipients = new ObservableCollection<Recipient>(_RecipientsStore.GetAll());
+            Messages = new ObservableCollection<Message>(_MessagesStore.GetAll());
+
+        }
+
         #endregion
 
-        
-        public MainWindowViewModel(IMailService MailService,MailSenderDB db,IStore<Recipient> RecipientStore )
-        {
-            _MailService = MailService;
-            _RecipientStore = RecipientStore;
-            Servers = new ObservableCollection<Server>(TestData.Servers);
-            Senders = new ObservableCollection<Sender>(TestData.Senders);
-            Recipients = new ObservableCollection<Recipient>(RecipientStore.GetAll());
-Messages = new ObservableCollection<Message>(TestData.Messages);
 
+        public MainWindowViewModel(IMailService MailService,
+            MailSenderDB db,
+            IStore<Recipient> RecipientsStore,
+            IStore<Sender> SendersStore,
+            IStore<Message> MessagesStore,
+            IStore<Server> ServersStore,
+            IStore<SchedulerTask> SchedulerTasksStore,
+            IMailSchedulerService MailSchedulerService
+
+        )
+        {
+            
+            _RecipientsStore = RecipientsStore;
+            _SendersStore = SendersStore;
+            _MessagesStore = MessagesStore;
+            _ServersStore = ServersStore;
+            _SchedulerTasksStore = SchedulerTasksStore;
+
+            _MailService = MailService;
+            _MailSchedulerService = MailSchedulerService;
 
         }
     }

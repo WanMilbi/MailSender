@@ -4,6 +4,7 @@ namespace MailSender.lib.Models
 {
     public class Server : Entity
     {
+        //public string Name { get; set; }
         public string Address { get; set; }
         private int _Port = 25;
         public int Port
