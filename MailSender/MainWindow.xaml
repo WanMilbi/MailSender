@@ -12,6 +12,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="clr-namespace:MailSender.lib.Models;assembly=MailSender.lib"
     xmlns:v="clr-namespace:MailSender.Views"
+    xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
     Title="{Binding Title}"
     Width="800"
     Height="450"
@@ -156,6 +157,7 @@
                         <StackPanel>
                             <TextBlock Text="Календарь" TextAlignment="Center" />
                             <Calendar />
+                            <xctk:TimePicker />
                             <StackPanel Margin="5,7">
                                 <StackPanel.Resources>
                                     <Style TargetType="Button">

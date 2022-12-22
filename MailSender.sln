@@ -19,7 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThreadApp", "ThreadApp\Thre
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThreadApp2", "ThreadApp2\ThreadApp2.csproj", "{B0F168C0-1E44-4D9C-B33F-1E914D7A7E07}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThreadingTask", "ThreadingTask\ThreadingTask.csproj", "{6CA84A66-9BEA-47DB-8273-F876CEF59781}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThreadingTask", "ThreadingTask\ThreadingTask.csproj", "{6CA84A66-9BEA-47DB-8273-F876CEF59781}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestLib", "TestLib\TestLib.csproj", "{05094971-ED2E-4DE1-BA6F-F63F84E0FAEF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,6 +61,10 @@ Global
 		{6CA84A66-9BEA-47DB-8273-F876CEF59781}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6CA84A66-9BEA-47DB-8273-F876CEF59781}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6CA84A66-9BEA-47DB-8273-F876CEF59781}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05094971-ED2E-4DE1-BA6F-F63F84E0FAEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05094971-ED2E-4DE1-BA6F-F63F84E0FAEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05094971-ED2E-4DE1-BA6F-F63F84E0FAEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05094971-ED2E-4DE1-BA6F-F63F84E0FAEF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -70,6 +76,7 @@ Global
 		{00E767F7-672A-4669-B8F3-89C78E5620EA} = {2125A30A-FD19-4B34-88FA-C5E8A6CDC0FC}
 		{B0F168C0-1E44-4D9C-B33F-1E914D7A7E07} = {2125A30A-FD19-4B34-88FA-C5E8A6CDC0FC}
 		{6CA84A66-9BEA-47DB-8273-F876CEF59781} = {2125A30A-FD19-4B34-88FA-C5E8A6CDC0FC}
+		{05094971-ED2E-4DE1-BA6F-F63F84E0FAEF} = {2125A30A-FD19-4B34-88FA-C5E8A6CDC0FC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8C38524D-0719-494C-B066-DDF30A081F52}
